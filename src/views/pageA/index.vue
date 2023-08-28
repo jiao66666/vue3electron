@@ -2,15 +2,10 @@
     <div id="pageA">
         <div>This is pageA-userStorePage</div>
         <div>当前name值{{name}},当前age值{{age}},当前getname值:{{getname}}</div>
-        <div class="btn" @click="changeName">
-            修改userName
-        </div>
-        <div class="btn" @click="changeAge">
-            修改userAge
-        </div>
-        <div class="btn" @click="changeBackName">
-            修改userBackName[usingAction]
-        </div>
+       
+        <el-button type="primary" @click="changeName">修改userName</el-button>
+        <el-button type="primary" @click="changeAge">修改userAge</el-button>
+        <el-button type="primary" @click="changeBackName">修改userBackName[usingAction]</el-button>
    </div> 
  </template>
  
