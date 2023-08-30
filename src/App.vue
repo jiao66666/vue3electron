@@ -1,7 +1,10 @@
 <template>
   <div id="mainMenu"> 
-    <div class="btnFloatRight">
-        <el-button type="danger" :icon="Close" circle @click="closeWin"/>
+    <div class="topcon">
+        <div class="topTitle">极傲-全自动炒菜机</div>
+        <div class="btnFloatRight">
+            <el-button type="danger" :icon="Close" circle @click="closeWin"/>
+        </div>
     </div>
     <el-card class="box-card">
         <template #header>
@@ -51,11 +54,10 @@
   </div>    
 </template>
 <script setup>
-const { ipcRenderer }  = window.electron;
 
 import {Close} from '@element-plus/icons-vue'
 function closeWin(){
-    ipcRenderer.send('close-window')
+    window.electronAPI.ipcRenderer.send('close-window')
 }
 </script>
 <style>
@@ -75,7 +77,23 @@ function closeWin(){
    color:#ffffff;
 }
 .btnFloatRight{
-    text-align: right;
+    position: absolute;
+    top:0;
+    right:0;
+}
+.topcon{
+    display: flex;
+    flex-flow: row nowrap;
     margin-bottom: 30px;
+    position: relative;
+    align-items: center;
+    height:32px;
+}
+.topTitle{
+    font-size:20px;
+    color:#333333;
+    font-weight: 600;
+    width:100%;
+    text-align: center;
 }
 </style>

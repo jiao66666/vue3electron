@@ -4,6 +4,8 @@ import { app, protocol, BrowserWindow ,Menu,ipcMain} from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const path = require('path')
+require('update-electron-app')()
+
 
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -17,7 +19,7 @@ async function createWindow() {
     center: true,
     webPreferences: {
         nodeIntegration: true,
-        preload: path.join(__dirname, 'preload.js'), // 正确的preload.js路径
+        preload: path.join(__dirname, 'preload.js'),
         contextIsolation: true    
     }
   })
@@ -30,6 +32,7 @@ async function createWindow() {
   } else {
     createProtocol('app')
     win.loadURL('app://./index.html')
+    win.webContents.openDevTools()
   }
 }
 
