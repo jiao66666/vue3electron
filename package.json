@@ -11,7 +11,7 @@
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps"
   },
-  "main": "index.js",
+  "main": "main.js",
   "dependencies": {
     "core-js": "^3.8.3",
     "element-plus": "^2.3.12",
