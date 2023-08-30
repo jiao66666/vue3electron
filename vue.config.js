@@ -4,6 +4,11 @@ const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 module.exports = {
   outputDir: './build',
+  pluginOptions:{
+    electronBuilder:{
+      preload:'src/preload.js'
+    }
+  },
   // 和webpapck属性完全一致，最后会进行合并
   configureWebpack: {
     resolve: {
