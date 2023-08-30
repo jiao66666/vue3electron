@@ -9,9 +9,6 @@ module.exports = {
     resolve: {
       alias: {
         components: '@/components'
-      },
-      fallback: {
-        "path": require.resolve("path-browserify")
       }
     },
     //配置webpack自动按需引入element-plus，

@@ -51,12 +51,11 @@
   </div>    
 </template>
 <script setup>
-//import { ipcRenderer } from 'electron';
-
+const { ipcRenderer }  = window.electron;
 
 import {Close} from '@element-plus/icons-vue'
 function closeWin(){
-    
+    ipcRenderer.send('close-window')
 }
 </script>
 <style>
