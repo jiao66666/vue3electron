@@ -3,9 +3,9 @@ const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
+
 module.exports = {
-  outputDir: './build',
-  // 和webpapck属性完全一致，最后会进行合并
+  publicPath: './', // 或者根据你的实际情况配置正确的路径
   configureWebpack: {
     resolve: {
       alias: {
@@ -29,9 +29,19 @@ module.exports = {
         appId: "com.jiao66666",
         win: {
           target: "nsis",
+          verifyUpdateCodeSignature: false,
           icon: "./dist_electron/myicon.png",
-          artifactName: "${productName}_Setup_${version}.${ext}"
-        }
+          artifactName: "${productName}_Setup_${version}.${ext}",
+          publish: [
+              {
+                "provider": "generic",
+                "url": "http://www.xzx725.store/"
+              }
+          ]
+        },
+        cscLink:'./jiao.pfx',
+        cscKeyPassword:'jiao66666',
+        compression: 'maximum'
       },
       preload:'src/preload.js'
     }

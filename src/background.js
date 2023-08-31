@@ -1,11 +1,20 @@
 'use strict'
 
-import { app, protocol, BrowserWindow ,Menu,ipcMain} from 'electron'
+import { app, protocol, BrowserWindow ,ipcMain} from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
+import doLog from './tools/log.js'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const path = require('path')
-require('update-electron-app')()
+const { autoUpdater } = require('electron-updater');
 
+doLog("fuck")
+autoUpdater.on('update-available', () => {
+    log.info('update available');
+});
+  
+autoUpdater.on('update-downloaded', () => {
+    log.info("download finished")
+});
 
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
@@ -17,14 +26,15 @@ async function createWindow() {
     height: 600,
     titleBarStyle: 'hidden', // 隐藏窗口标题栏
     center: true,
+    fullscreen: true,
+    autoHideMenuBar: true,
+    frame: false,
     webPreferences: {
         nodeIntegration: true,
         preload: path.join(__dirname, 'preload.js'),
         contextIsolation: true    
     }
   })
-
-  Menu.setApplicationMenu(null);    //移除自带菜单
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
@@ -37,6 +47,8 @@ async function createWindow() {
 }
 
 app.on('ready', async () => {
+    autoUpdater.checkForUpdatesAndNotify();
+
     createWindow()
 
     ipcMain.on('close-window',(event) => {
@@ -69,3 +81,6 @@ app.on('window-all-closed', () => {
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+
+
+ 

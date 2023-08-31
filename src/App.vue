@@ -56,6 +56,7 @@
 <script setup>
 
 import {Close} from '@element-plus/icons-vue'
+
 function closeWin(){
     window.electronAPI.ipcRenderer.send('close-window')
 }
