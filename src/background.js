@@ -87,11 +87,11 @@ app.on('activate', () => {
 
 
 autoUpdater.on('update-available', () => {
-    
+    consoleLog("Update available---------")
 });
   
 autoUpdater.on('update-downloaded', () => {
-    
+    consoleLog("Update downloaded---------")
 });
 
 
