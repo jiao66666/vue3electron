@@ -72,8 +72,19 @@
                 <el-input v-model="percentageVal" placeholder="请输入进度条值" />
                 <el-progress :percentage="percentageVal" :stroke-width="15" striped striped-flow text-inside />
              </el-col>
+             <el-col :span="4">
+                <el-card shadow="hover" body-class="primary"  @click="popProgress"> 弹出进度条框 </el-card>
+             </el-col>
         </el-row>
     </el-card>
+    <el-dialog v-model="progressDialogVisible" :show-close="false" :close-on-click-modal="false" :align-center="true">
+        <template #header="{titleClass}">
+            <div class="my-header">
+                <h4 :class="titleClass">安装进度</h4>
+              </div>
+        </template>
+        <el-progress :percentage="percentageVal" :stroke-width="15" striped striped-flow text-inside />
+    </el-dialog>
   </div>    
 </template>
 <script setup>
@@ -81,12 +92,14 @@ import {Close} from '@element-plus/icons-vue'
 import { ref } from 'vue';
 const webUrl=ref('https://www.163.com')
 const percentageVal=ref(0)
+const progressDialogVisible=ref(false)
 const {ipcRenderer,onLog,onProgress} = window.electronAPI
 onLog((_event, value) => {
       console.log("I'm in renderer")
       console.log(value)
 })
 onProgress((_event, percentage) => {
+      if(progressDialogVisible.value!=true) progressDialogVisible.value=true
       percentageVal.value=percentage 
 })
 function closeWin(){
@@ -101,6 +114,9 @@ function openWebView(){
 function openBrowWindow(){
     console.log(webUrl.value)
     ipcRenderer.send('open-browwindow',{webUrl:webUrl.value})
+}
+function popProgress(){
+    progressDialogVisible.value=true
 }
 
 </script>
