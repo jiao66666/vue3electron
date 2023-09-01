@@ -35,7 +35,7 @@ module.exports = {
           publish: [
               {
                 "provider": "generic",
-                "url": "http://www.xzx725.store/"
+                "url": "http://121.37.130.1/"
               }
           ]
         },

@@ -50,7 +50,14 @@ async function consoleLog(msg){
         mainWin.webContents.send('log',msg);
     }
 }
-
+async function showProgress(value){
+    if(mainWin==null){
+        mainWin=await createWindow();
+        mainWin.webContents.send('progress',value);
+    }else{
+        mainWin.webContents.send('progress',value);
+    }
+}
 app.on('ready', async () => {
     mainWin=await createWindow()
     consoleLog("----------App ready---------")
@@ -119,8 +126,11 @@ autoUpdater.on('update-available', () => {
     })
 });
 autoUpdater.on('download-progress', function (progressObj) {
-    consoleLog('下载进度信息'+(progressObj.percent / 100))
-    mainWin.setProgressBar(progressObj.percent / 100);
+    consoleLog('下载进度信息'+(progressObj.percent))
+    let percentNum=progressObj.percent
+    showProgress(percentNum.toFixed(2))
+    mainWin.setProgressBar(progressObj.percent);
+
 })  
 autoUpdater.on('update-downloaded', () => {
     consoleLog("Update downloaded---------")

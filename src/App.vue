@@ -69,7 +69,8 @@
                 <el-card shadow="hover"  body-class="danger" @click="openBrowWindow"> 测试openBrowWindow窗口 </el-card>
              </el-col>
              <el-col :span="4">
-               
+                <el-input v-model="percentageVal" placeholder="请输入进度条值" />
+                <el-progress :percentage="percentageVal" :stroke-width="15" striped striped-flow text-inside />
              </el-col>
         </el-row>
     </el-card>
@@ -79,12 +80,15 @@
 import {Close} from '@element-plus/icons-vue'
 import { ref } from 'vue';
 const webUrl=ref('https://www.163.com')
-const {ipcRenderer,onLog,clipboard} = window.electronAPI
+const percentageVal=ref(0)
+const {ipcRenderer,onLog,onProgress} = window.electronAPI
 onLog((_event, value) => {
       console.log("I'm in renderer")
       console.log(value)
 })
-
+onProgress((_event, percentage) => {
+      percentageVal.value=percentage 
+})
 function closeWin(){
     ipcRenderer.send('close-window')
 }
