@@ -50,7 +50,7 @@ async function consoleLog(msg){
 }
 
 app.on('ready', async () => {
-    createWindow()
+    mainWin=await createWindow()
     consoleLog("App ready---------")
     autoUpdater.checkForUpdatesAndNotify();
     ipcMain.on('close-window',(event) => {
@@ -82,7 +82,7 @@ app.on('window-all-closed', () => {
   
 
 app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0 && mainWin==null) createWindow()
 })
 
 

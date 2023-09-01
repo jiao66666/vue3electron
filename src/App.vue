@@ -58,7 +58,6 @@ import {Close} from '@element-plus/icons-vue'
 const {ipcRenderer,onLog} = window.electronAPI
 onLog((_event, value) => {
       console.log("I'm in renderer")
-      console.log(_event)
       console.log(value)
 })
 
