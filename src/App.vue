@@ -17,7 +17,7 @@
                 <el-card shadow="hover" body-class="primary"> 启动炒菜机 </el-card>
             </el-col>
             <el-col :span="12">
-               <el-card shadow="hover" body-class="danger"> 关闭炒菜机 </el-card>
+               <el-card shadow="hover" body-class="danger" > 关闭炒菜机 </el-card>
             </el-col>
         </el-row>
     </el-card>
@@ -51,11 +51,35 @@
             </el-col>
         </el-row>
     </el-card>
+    <el-card class="box-card">
+        <template #header>
+          <div class="card-header">
+            <span>测试模块</span>
+          </div>
+        </template>
+        <el-row :gutter="24">
+            <el-col :span="4">
+                <el-card shadow="hover" body-class="primary"  @click="openMachine"> 测试连接 </el-card>
+            </el-col>
+            <el-col :span="4">
+               <el-card shadow="hover"  body-class="danger" @click="openWebView"> 测试Webview窗口 </el-card>
+            </el-col>
+            <el-col :span="4">
+                <el-input v-model="webUrl" placeholder="请输入网址" />
+                <el-card shadow="hover"  body-class="danger" @click="openBrowWindow"> 测试openBrowWindow窗口 </el-card>
+             </el-col>
+             <el-col :span="4">
+               
+             </el-col>
+        </el-row>
+    </el-card>
   </div>    
 </template>
 <script setup>
 import {Close} from '@element-plus/icons-vue'
-const {ipcRenderer,onLog} = window.electronAPI
+import { ref } from 'vue';
+const webUrl=ref('https://www.163.com')
+const {ipcRenderer,onLog,clipboard} = window.electronAPI
 onLog((_event, value) => {
       console.log("I'm in renderer")
       console.log(value)
@@ -64,6 +88,17 @@ onLog((_event, value) => {
 function closeWin(){
     ipcRenderer.send('close-window')
 }
+function openMachine(){
+    console.log("Open machine")
+}
+function openWebView(){
+    ipcRenderer.send('open-webview-window')
+}
+function openBrowWindow(){
+    console.log(webUrl.value)
+    ipcRenderer.send('open-browwindow',{webUrl:webUrl.value})
+}
+
 </script>
 <style>
 #app {
