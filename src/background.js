@@ -2,23 +2,16 @@
 
 import { app, protocol, BrowserWindow ,ipcMain} from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
-import doLog from './tools/log.js'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 const path = require('path')
 const { autoUpdater } = require('electron-updater');
 
-doLog("fuck")
-autoUpdater.on('update-available', () => {
-    log.info('update available');
-});
-  
-autoUpdater.on('update-downloaded', () => {
-    log.info("download finished")
-});
-
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
+
+let winNums=0;
+let mainWin=null;
 
 async function createWindow() {
   const win = new BrowserWindow({
@@ -41,16 +34,25 @@ async function createWindow() {
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
-    win.loadURL('app://./index.html')
+    await win.loadURL('app://./index.html')
     win.webContents.openDevTools()
   }
+  winNums++; 
+  return win
+}
+async function consoleLog(msg){
+    if(mainWin==null){
+        mainWin=await createWindow();
+        mainWin.webContents.send('log',msg);
+    }else{
+        mainWin.webContents.send('log',msg);
+    }
 }
 
 app.on('ready', async () => {
-    autoUpdater.checkForUpdatesAndNotify();
-
     createWindow()
-
+    consoleLog("App ready---------")
+    autoUpdater.checkForUpdatesAndNotify();
     ipcMain.on('close-window',(event) => {
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
@@ -76,11 +78,21 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       app.quit()
     }
-  })
+})
   
-  app.on('activate', () => {
+
+app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
+})
+
+
+autoUpdater.on('update-available', () => {
+    
+});
+  
+autoUpdater.on('update-downloaded', () => {
+    
+});
 
 
  

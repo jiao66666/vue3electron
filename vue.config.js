@@ -43,7 +43,8 @@ module.exports = {
         cscKeyPassword:'jiao66666',
         compression: 'maximum'
       },
-      preload:'src/preload.js'
+      preload:'src/preload.js',
+      main:'src/background.js',
     }
   }
 }
