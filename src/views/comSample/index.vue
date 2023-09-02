@@ -27,7 +27,7 @@
        
 </template>
 
-
+<!-----------此处为和mqtt中间站通讯代码 ------------------->
 <script setup>
 const mqtt = require('mqtt')
 import {ref} from 'vue'

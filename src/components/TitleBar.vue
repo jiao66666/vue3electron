@@ -1,29 +1,38 @@
 <template>
     <div class="topcon">
         <div class="topTitle">{{props.name}}</div>
-        <div class="btnFloatRight">
-            <el-button type="info" :icon="Close" circle @click="closeWin"/>
+        <div class="btnFloatLeft" @click="goBack" v-if="isShowBackBtn">
+            <SvgIcon name="back" width="30" height="30"/>
         </div>
     </div>
 </template>
 <script setup>
-import {Close} from '@element-plus/icons-vue'
-const {ipcRenderer}=window.electronAPI
+import SvgIcon from '@/components/SvgIcon'
+import router from '@/router'
+import {ref,watch} from 'vue'
+import { useRoute } from 'vue-router'
+
+const isShowBackBtn=ref(false)
 const props=defineProps({
     name:{
         type:String,
         default:''
     }
 })
-const closeWin = () => {
-    ipcRenderer.send('close-window')
+const goBack=()=>{
+    router.back()
 }
+const route = useRoute()
+watch(() => route.path, (newPath) => {
+    isShowBackBtn.value = newPath !== '/'
+})
+
 </script>
 <style scoped>
-.btnFloatRight{
+.btnFloatLeft{
     position: absolute;
     top:0;
-    right:0;
+    left:20px;
 }
 .topcon{
     display: flex;

@@ -1,5 +1,5 @@
 <template>
-    <div class="menucon" @click="showMsg('加热')">
+    <div class="menucon" @click="emit('click')">
         <div class="menuiconcon"><SvgIcon :name="props.iconName" /></div>
         <div class="menutitlecon"><span class="menutitle">{{props.titleName}}</span></div>
     </div>
@@ -16,9 +16,7 @@ const props=defineProps({
         default:''
     } 
 })
-const showMsg = (msg) => {
-     console.log(msg)
-}
+const emit=defineEmits(['click'])
 </script>
 <style scoped>
 
