@@ -1,7 +1,7 @@
 <template>
   <div id="mainMenu"> 
     <div class="maincon">
-        <MenuItem iconName="1" titleName="菜谱" @click="doSomething"/>
+        <MenuItem iconName="1" titleName="菜谱" @click="goPage('/dishMenu')"/>
         <MenuItem iconName="2" titleName="炒菜" @click="goPage('/storeSample')"/>
         <MenuItem iconName="3" titleName="冰柜"/>
         <MenuItem iconName="4" titleName="存储"/>
@@ -26,9 +26,7 @@ onProgress((_event, percentage) => {
       if(progressDialogVisible.value!=true) progressDialogVisible.value=true
       percentageVal.value=percentage 
 })
-const doSomething = () => {
-    console.log("I'll do something here")
-}
+
 const goPage = (path) => {      
     router.push(path)
 }

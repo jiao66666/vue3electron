@@ -9,6 +9,9 @@ const myRouters=[
     },
     {
         path:"/comSample",name:"comSample",component:()=>import("../views/comSample/index.vue")
+    },
+    {
+        path:"/dishMenu",name:"dishMenu",component:()=>import("../views/dishMenu/index.vue")
     }
 ]
 const router = createRouter({
