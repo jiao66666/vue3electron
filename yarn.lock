@@ -11877,6 +11877,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmmirror.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+svg-loader@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/svg-loader/-/svg-loader-0.0.2.tgz#601ab2fdaa1dadae3ca9975b550de92a07e1d92b"
+  integrity sha512-otmaUALijTGJJpvPVTHhHIzseEsrB7DyJJxygb0XkiZPeJT9t+PiK7tDT9YWSUDqHqqqutTqF0ldXth/+T72wg==
+
 svg-tags@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmmirror.com/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
@@ -12798,6 +12803,15 @@ vue-hot-reload-api@^2.3.0:
 vue-loader@^17.0.0:
   version "17.2.2"
   resolved "https://registry.npmmirror.com/vue-loader/-/vue-loader-17.2.2.tgz#96148eb70c1365cc8c5bab4274923596811c79df"
+  integrity sha512-aqNvKJvnz2A/6VWeJZodAo8XLoAlVwBv+2Z6dama+LHsAF+P/xijQ+OfWrxIs0wcGSJduvdzvTuATzXbNKkpiw==
+  dependencies:
+    chalk "^4.1.0"
+    hash-sum "^2.0.0"
+    watchpack "^2.4.0"
+
+vue-loader@^17.2.2:
+  version "17.2.2"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-17.2.2.tgz#96148eb70c1365cc8c5bab4274923596811c79df"
   integrity sha512-aqNvKJvnz2A/6VWeJZodAo8XLoAlVwBv+2Z6dama+LHsAF+P/xijQ+OfWrxIs0wcGSJduvdzvTuATzXbNKkpiw==
   dependencies:
     chalk "^4.1.0"

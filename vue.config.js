@@ -2,17 +2,17 @@
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
+const path = require('path')
 
 
 module.exports = {
-  publicPath: './', // 或者根据你的实际情况配置正确的路径
+ // publicPath: './', // 或者根据你的实际情况配置正确的路径
   configureWebpack: {
     resolve: {
       alias: {
         components: '@/components'
       }
     },
-    //配置webpack自动按需引入element-plus，
     plugins: [
         AutoImport({
           resolvers: [ElementPlusResolver()]

@@ -18,10 +18,12 @@ let mainWin=null;
 async function createWindow() {
   const win = new BrowserWindow({
     width: 800,
-    height: 600,
-    titleBarStyle: 'hiddenInset', // 隐藏窗口标题栏
+    height: 400,
+    backgroundColor: '#2e2c29',
+    titleBarStyle: 'hiddenInset', 
+    alwaysOnTop:true,
     center: true,
-    fullscreen: true,
+    useContentSize:true,
     autoHideMenuBar: true,
     frame: false,
     webPreferences: {
@@ -66,17 +68,6 @@ app.on('ready', async () => {
         const webContents = event.sender
         const win = BrowserWindow.fromWebContents(webContents)
         win.close()
-    })
-    ipcMain.on("open-webview-window",(event)=>{
-        const win = new BrowserWindow({ width: 800, height: 600 })
-        const view = new BrowserView()
-        win.setBrowserView(view)
-        view.setBounds({ x: 0, y: 0, width: 300, height: 300 })
-        view.webContents.loadURL('https://www.163.com')
-    })
-    ipcMain.on("open-browwindow",(event,payload)=>{
-        const win = new BrowserWindow({ width: 800, height: 600 })
-        win.loadURL(payload.webUrl)
     })
 })
 

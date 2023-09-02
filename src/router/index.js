@@ -9,9 +9,6 @@ const myRouters=[
     },
     {
         path:"/pageB",name:"pageB",component:()=>import("../views/pageB/index.vue")
-    },
-    {
-        path:"/pageC",name:"pageC",component:()=>import("../components/HelloWorld.vue")
     }
 ]
 const router = createRouter({
