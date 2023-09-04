@@ -1,6 +1,13 @@
 <template>
     <el-tabs tab-position="left"  class="demo-tabs" style="height:330px;">
-        <el-tab-pane v-for="item in menuList" :key='item.id' :label="item.title"><img :src="item.img" class="img"/></el-tab-pane>
+        <el-tab-pane v-for="item in menuList" :key='item.id' :label="item.title">
+            <div><img :src="item.img" class="img"/></div>
+            <div class="btncon">
+                <div class="btn">
+                    <el-button type="primary">确认制作</el-button>
+                </div>
+            </div>
+        </el-tab-pane>
     </el-tabs>
 </template>
 <script setup>
@@ -25,5 +32,14 @@ const menuList=ref([
 .img{
     display: block ;
     width:100%;
+}
+.btncon{
+    display:flex;
+    flex-flow:row wrap;
+    align-items: center;
+    margin-top:10px;
+}
+.btn{
+    margin-left:auto;
 }
 </style>

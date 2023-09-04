@@ -12,6 +12,9 @@ const myRouters=[
     },
     {
         path:"/dishMenu",name:"dishMenu",component:()=>import("../pages/dishMenu/index.vue")
+    },
+    {
+        path:"/iceStorage",name:"iceStorage",component:()=>import("../pages/iceStorage/index.vue")
     }
 ]
 const router = createRouter({

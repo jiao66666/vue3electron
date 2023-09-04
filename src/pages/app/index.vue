@@ -2,8 +2,8 @@
   <div id="mainMenu"> 
     <div class="maincon">
         <MenuItem iconName="1" titleName="菜谱" @click="goPage('/dishMenu')"/>
-        <MenuItem iconName="2" titleName="炒菜" @click="goPage('/storeSample')"/>
-        <MenuItem iconName="3" titleName="冰柜"/>
+        <MenuItem iconName="2" titleName="冰柜" @click="goPage('/iceStorage')"/>
+        <MenuItem iconName="3" titleName="加热"/>
         <MenuItem iconName="4" titleName="存储"/>
         <MenuItem iconName="5" titleName="送盘"/>
         <MenuItem iconName="6" titleName="洗碗"/>
