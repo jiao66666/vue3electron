@@ -17,6 +17,7 @@
 <script setup>
 import MenuItem from '@/components/MenuItem.vue'
 import router from '@/router'
+
 const {onLog,onProgress,ipcRenderer}=window.electronAPI
 onLog((_event, value) => {
       console.log("I'm in renderer")
@@ -31,7 +32,7 @@ const goPage = (path) => {
     router.push(path)
 }
 const closeWin = () => {
-    ipcRenderer.send('close-window')
+    ipcRenderer.send('close-window')  
 }
 </script>
 <style scoped>

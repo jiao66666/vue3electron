@@ -2,16 +2,16 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 const myRouters=[
     {
-        path:"/",name:"app",component:()=>import("../views/app/index.vue")
+        path:"/",name:"app",component:()=>import("../pages/app/index.vue")
     },
     {
-        path:"/storeSample",name:"storeSample",component:()=>import("../views/storeSample/index.vue")
+        path:"/storeSample",name:"storeSample",component:()=>import("../pages/storeSample/index.vue")
     },
     {
-        path:"/comSample",name:"comSample",component:()=>import("../views/comSample/index.vue")
+        path:"/comSample",name:"comSample",component:()=>import("../pages/comSample/index.vue")
     },
     {
-        path:"/dishMenu",name:"dishMenu",component:()=>import("../views/dishMenu/index.vue")
+        path:"/dishMenu",name:"dishMenu",component:()=>import("../pages/dishMenu/index.vue")
     }
 ]
 const router = createRouter({
